@@ -37,7 +37,14 @@ class List
     Node<Type> * head; 
     
   public: 
-    List() : head(0), tail(0) { }; 
+    List() : head(0) { }; 
+    ~List()
+    {
+        for(Node<Type> * curr = head; curr != 0; curr = curr->next)
+        {
+            delete curr; 
+        }
+    }
     void elementSwap(int pos)
     {
         //Special case for swapping at the head
@@ -86,34 +93,15 @@ template<typename Type>
 void listCopy(forward_list<Type> L, forward_list<Type>& P)
 {
     forward_list<Type> temp; 
-    //traverses list L forward
-    int size = 0; 
+    
     for(auto l = L.begin(); l != L.end(); ++l)
     {
-        //pushes elements of L in backwards
-        cout << "Pushing element into temp list"<< endl; 
+        //pushes elements of L in backwards into temp list
         temp.push_front(*l);
-        cout << "Push front successful" << endl; 
-        size++; 
     }
-    // P.resize(size); 
-
-    auto itr = P.begin(); 
-    while(itr != P.end())
-    {
-      ++itr; 
-      ++size; 
-    }
-    //P.resize(size); 
     
-    for(auto it = temp.begin(); it != temp.end(); it++)
-    {
-      cout << "Inserting elements into P" << endl; 
-      P.insert_after(itr, *it);
-      cout << "insert successful" << endl; 
-      itr++; 
-    }
-    //P.splice_after(itr, temp);
+    temp.splice_after(temp.before_begin(), P);
+    P = temp; 
 }
 
 template<typename Type>
