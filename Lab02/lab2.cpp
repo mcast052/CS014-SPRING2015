@@ -38,6 +38,7 @@ int primeCount(forward_list<int> lst)
 
 int main()
 {
+    //Testing printLots
     forward_list<int> a; 
     a.push_front(1); 
     a.push_front(5); 
@@ -62,6 +63,12 @@ int main()
     b.push_front(2); 
     b.push_front(0); 
     
+    printLots(a, b); 
+    
+    //Testing primeCount 
+    cout << "There are " << primeCount(a) << " prime numbers in this list." << endl;
+    
+    //Testing listCopy 
     forward_list<char> c; 
     c.push_front('t'); 
     c.push_front('a'); 
@@ -73,28 +80,43 @@ int main()
     d.push_front('o');
     d.push_front('d'); 
     
-    printLots(a, b); 
-    cout << "There are " << primeCount(a) << " prime numbers in this list." << endl; 
-    // listCopy(d, c); 
+    listCopy(d, c); 
+    for(auto i = c.begin(); i != c.end(); ++i)
+    {
+        cout << *i; 
+    }
+    cout << endl; 
     
-    // for(auto i = c.begin(); i != c.end(); ++i)
-    // {
-    //     cout << *i; 
-    // }
-    // cout << endl; 
-    
-    List<int> e; 
-    e.push_front(6); 
+    forward_list<int>e; 
     e.push_front(5); 
     e.push_front(4); 
     e.push_front(3); 
     e.push_front(2); 
     e.push_front(1); 
-    e.push_front(0); 
+    listCopy(e, b); 
+    for(auto i = b.begin(); i != b.end(); ++i)
+    {
+        cout << *i << " ";
+    }
+    cout << endl; 
     
-    e.display(); 
-    e.elementSwap(5); 
-    e.display(); 
+    //Testing elementSwap
+    List<int> f; 
+    f.push_front(6); 
+    f.push_front(5); 
+    f.push_front(4); 
+    f.push_front(3); 
+    f.push_front(2); 
+    f.push_front(1); 
+    f.push_front(0); 
+    
+    f.display(); 
+    f.elementSwap(5); 
+    f.display(); 
+    f.elementSwap(0); 
+    f.display(); 
+    f.elementSwap(3); 
+    f.display(); 
     
     return 0; 
 }
